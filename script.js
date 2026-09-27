@@ -1,5 +1,7 @@
 const map = L.map("map").setView([-1.9441, 30.0619], 10);
 
+const locationButton = document.getElementById("location-btn");
+
 L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
     attribution: "&copy; OpenStreetMap contributors"
 }).addTo(map);
@@ -120,4 +122,51 @@ routeButton.addEventListener("click", async function () {
         routeButton.disabled = false;
         routeButton.textContent = "Show Route";
     }
+});
+
+locationButton.addEventListener("click", function () {
+    if (!navigator.geolocation) {
+        alert("Your browser does not support location services.");
+        return;
+    }
+
+    locationButton.textContent = "📍 Getting location...";
+    locationButton.disabled = true;
+
+    navigator.geolocation.getCurrentPosition(
+        async function (position) {
+            const latitude = position.coords.latitude;
+            const longitude = position.coords.longitude;
+
+            try {
+                const response = await fetch(
+                    `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`
+                );
+
+                const data = await response.json();
+
+                if (data.display_name) {
+                    startInput.value = data.display_name;
+                } else {
+                    startInput.value = `${latitude}, ${longitude}`;
+                }
+
+            } catch (error) {
+                console.error(error);
+                startInput.value = `${latitude}, ${longitude}`;
+            }
+
+            locationButton.textContent = "📍 Use My Current Location";
+            locationButton.disabled = false;
+        },
+
+        function (error) {
+            console.error(error);
+
+            alert("Unable to get your location. Please allow location access.");
+
+            locationButton.textContent = "📍 Use My Current Location";
+            locationButton.disabled = false;
+        }
+    );
 });

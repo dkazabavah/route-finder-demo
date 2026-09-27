@@ -26,22 +26,34 @@
         <section class="search-box">
 
             <div class="input-group">
-                <label for="start">Starting Location</label>
-                <input
-                    type="text"
-                    id="start"
-                    placeholder="e.g. Kigali, Rwanda"
-                >
-            </div>
+    <label for="start">Starting Location</label>
+
+    <button type="button" id="location-btn">
+        📍 Use My Current Location
+    </button>
+
+    <input
+        type="text"
+        id="start"
+        placeholder="Search starting location..."
+        autocomplete="off"
+    >
+
+    <div id="start-suggestions" class="suggestions"></div>
+</div>
 
             <div class="input-group">
-                <label for="destination">Destination</label>
-                <input
-                    type="text"
-                    id="destination"
-                    placeholder="e.g. Musanze, Rwanda"
-                >
-            </div>
+    <label for="destination">Destination</label>
+
+    <input
+        type="text"
+        id="destination"
+        placeholder="Search destination..."
+        autocomplete="off"
+    >
+
+    <div id="destination-suggestions" class="suggestions"></div>
+</div>
 
             <button id="route-btn">Show Route</button>
 
