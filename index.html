@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Route Finder</title>
+
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    >
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main class="container">
+
+        <header class="header">
+            <div class="icon">📍</div>
+            <h1>Route Finder</h1>
+            <p>Find the best driving route between two locations.</p>
+        </header>
+
+        <section class="search-box">
+
+            <div class="input-group">
+                <label for="start">Starting Location</label>
+                <input
+                    type="text"
+                    id="start"
+                    placeholder="e.g. Kigali, Rwanda"
+                >
+            </div>
+
+            <div class="input-group">
+                <label for="destination">Destination</label>
+                <input
+                    type="text"
+                    id="destination"
+                    placeholder="e.g. Musanze, Rwanda"
+                >
+            </div>
+
+            <button id="route-btn">Show Route</button>
+
+        </section>
+
+        <section id="map"></section>
+
+        <section id="route-info">
+            <p>Enter two locations to see the route.</p>
+        </section>
+
+        <footer>
+            <p>Powered by OpenStreetMap, Nominatim & OSRM</p>
+        </footer>
+
+    </main>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="script.js"></script>
+
+</body>
+</html>
